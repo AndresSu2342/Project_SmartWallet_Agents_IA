@@ -6,20 +6,29 @@ Sistema inteligente de gestión financiera personal impulsado por múltiples age
 
 El proyecto está compuesto por una arquitectura de microservicios y agentes especializados, coordinados por un orquestador central.
 
-```mermaid
-graph TD
-    Client[Client (React/Vite)] -->|HTTP| Core[App Core (NestJS)]
-    Core -->|Events| Orch[Orchestrator Agent (NestJS)]
-    
-    subgraph "Agent Ecosystem"
-        Orch -->|SQS| FinAgent[Financial Insight Agent (Node/TS)]
-        Orch -->|SQS| GoalAgent[Goal Intelligence Agent (Python/CrewAI)]
-        Orch -->|SQS| Coach[Motivational Coach (Make)]
-        Orch -->|SQS| Budget[Budget Balancer (Make)]
-    end
-
-    FinAgent -->|Analysis| Orch
-    GoalAgent -->|Updates| Orch
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     CoreSystem (Java)                        │
+│              (Transacciones, Metas, Presupuestos)            │
+└──────────────────────┬──────────────────────────────────────┘
+                       │ POST /events
+                       ↓
+┌─────────────────────────────────────────────────────────────┐
+│                  Orchestrator Agent (NestJS)                 │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐    │
+│  │  PostgreSQL  │  │  PostgreSQL  │  │   LangGraph      │    │
+│  │ (Episódica)  │  │  (Semántica) │  │   (Decisión)     │    │
+│  └──────────────┘  └──────────────┘  └──────────────────┘    │
+└──────────────────────┬──────────────────────────────────────┘
+                       │ Publish to SQS
+         ┌─────────────┼─────────────┬─────────────┐
+         ↓             ↓             ↓             ↓
+┌─────────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────┐
+│ Financial   │ │  Goals   │ │  Budget  │ │ Motivational │
+│  Insight    │ │  Agent   │ │ Balancer │ │    Coach     │
+│   Agent     │ │ (Python) │ │ (Make)   │ │   (Make)     │
+│ (Node.js)   │ │          │ │          │ │              │
+└─────────────┘ └──────────┘ └──────────┘ └──────────────┘
 ```
 
 ---
