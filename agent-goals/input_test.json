@@ -1,0 +1,18 @@
+{
+  "mode": "all",
+  "event_type": "FULL_ANALYSIS_PROMPT",
+  "user_id": 123,
+  "semantic_memory": {"habits": ["buys coffee daily"]},
+  "financial_context": {
+    "monthly_income": 3000,
+    "fixed_expenses": 1200,
+    "variable_expenses": 800,
+    "savings": 400,
+    "month_surplus": 600
+  },
+  "transactions": [
+    {"id":"t1","amount":3.5,"category_id":"coffee","description":"latte","date":"2025-11-28T09:00:00Z","type":"expense"},
+    {"id":"t2","amount":12.0,"category_id":"lunch","description":"fast lunch","date":"2025-11-27T13:00:00Z","type":"expense"}
+  ],
+  "goals": []
+}

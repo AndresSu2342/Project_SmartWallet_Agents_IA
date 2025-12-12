@@ -1,0 +1,15 @@
+# Variables de entorno
+.env
+.env.local
+.env.* 
+
+# Dependencias
+node_modules/
+*/node_modules/
+
+# Builds y cachés
+dist/
+build/
+*.log
+.DS_Store
+EOF
