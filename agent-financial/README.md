@@ -5,7 +5,7 @@ Este proyecto contiene un agente que consume una cola SQS con contexto financier
 Instalación:
 
 ```pwsh
-cd C:\Users\maria.torres-m\Downloads\agente-financiero
+cd .\agent-financial
 npm install
 ```
 
